@@ -2,6 +2,8 @@ format = """
 $line_break\
 ${custom.devbox}\
 $line_break\
+$kubernetes\
+$line_break\
 $username\
 $hostname\
 $directory\
@@ -36,7 +38,7 @@ format = "[$path]($style) "
 [kubernetes]
 detect_files = ['k8s']
 disabled = false
-format = 'on [($user on)($cluster in )$context \($namespace\)](dimmed green) '
+format = 'on [($user on )($cluster in )$context \($namespace\)](dimmed green) '
 
 [shell]
 disabled = false
