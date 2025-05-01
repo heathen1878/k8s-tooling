@@ -1,0 +1,78 @@
+format = """
+$line_break\
+${custom.devbox}\
+$line_break\
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_status\
+$line_break\
+${custom.subscription}\
+$line_break\
+$line_break\
+$cmd_duration\
+$shell\
+$character\
+"""
+
+[character]
+error_symbol = "[✘](red bold)"
+success_symbol = "[➜](bold green)"
+
+[cmd_duration]
+min_time = 0
+format = "[$duration]($style) "
+
+[directory]
+truncation_length = 2
+truncation_symbol = "../"
+style = "bold cyan"
+home_symbol = "~"
+format = "[$path]($style) "
+
+[kubernetes]
+detect_files = ['k8s']
+disabled = false
+format = 'on [($user on)($cluster in )$context \($namespace\)](dimmed green) '
+
+[shell]
+disabled = false
+bash_indicator = "bash \\$"
+powershell_indicator = "pwsh >_"
+style = "cyan bold"
+
+[username]
+style_user = 'bold green'
+format = "\\$[$user]($style) in "
+show_always = true
+
+[terraform]
+disabled=true
+
+[git_status]
+conflicted = " 😵 "
+ahead = " ➕ "
+behind = " 😰 "
+diverged = " 🔥 "
+untracked = " 🕵️ "
+stashed = " 📦 "
+modified = " 📝 "
+#staged = " ++ "
+# had some issues with staged, comment out if you do
+staged = " 🗃️  ×${count} "
+renamed = " 👅 "
+deleted = " 🗑 "
+
+[custom.devbox]
+when = """ if [[ $DEVBOX_SHELL_ENABLED ]]; then exit 0; fi; exit 1 """
+format = "Using the Devbox Shell...🚀 "
+
+[custom.subscription]
+command = "az account show | jq -rc '.name'"
+style = "bold purple"
+when = """ if [[ "$(pwd)" == *source* ]]; then exit 0; fi; exit 1 """
+format = "Connected to Azure Subscription: [($output)]($style) "
+ignore_timeout = true
