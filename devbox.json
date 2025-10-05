@@ -3,7 +3,9 @@
   "packages": [
     "starship@1.21.1",
     "kubectl@1.32.3",
-    "kubectx@0.9.5"
+    "kubectx@0.9.5",
+    "kubeseal@0.29.0",
+    "kubernetes-helm@3.18.2"
   ],
   "shell": {
     "init_hook": [
